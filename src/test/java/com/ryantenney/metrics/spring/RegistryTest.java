@@ -19,9 +19,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import io.dropwizard.metrics.health.HealthCheckRegistry;
+import com.codahale.metrics.health.HealthCheckRegistry;
 
-import io.dropwizard.metrics.MetricRegistry;
+import com.codahale.metrics.MetricRegistry;
 
 public class RegistryTest {
 

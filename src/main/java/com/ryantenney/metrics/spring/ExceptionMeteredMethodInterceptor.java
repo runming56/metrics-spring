@@ -24,11 +24,10 @@ import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.core.Ordered;
 import org.springframework.util.ReflectionUtils.MethodFilter;
 
-import io.dropwizard.metrics.annotation.ExceptionMetered;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.annotation.ExceptionMetered;
 
-import io.dropwizard.metrics.Meter;
-import io.dropwizard.metrics.MetricName;
-import io.dropwizard.metrics.MetricRegistry;
 import static com.ryantenney.metrics.spring.AnnotationFilter.PROXYABLE_METHODS;
 
 class ExceptionMeteredMethodInterceptor extends AbstractMetricMethodInterceptor<ExceptionMetered, Meter> implements Ordered {
@@ -55,12 +54,12 @@ class ExceptionMeteredMethodInterceptor extends AbstractMetricMethodInterceptor<
 	}
 
 	@Override
-	protected Meter buildMetric(MetricRegistry metricRegistry, MetricName metricName, ExceptionMetered annotation) {
+	protected Meter buildMetric(MetricRegistry metricRegistry, String metricName, ExceptionMetered annotation) {
 		return metricRegistry.meter(metricName);
 	}
 
 	@Override
-	protected MetricName buildMetricName(Class<?> targetClass, Method method, ExceptionMetered annotation) {
+	protected String buildMetricName(Class<?> targetClass, Method method, ExceptionMetered annotation) {
 		return Util.forExceptionMeteredMethod(targetClass, method, annotation);
 	}
 

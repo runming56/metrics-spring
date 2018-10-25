@@ -15,22 +15,8 @@
  */
 package com.ryantenney.metrics.spring.reporter;
 
-/**
- * @author <a href="mailto:david@davidkarlsen.com">David J. M. Karlsen</a>
- * @since 4.0.0
- */
-public class InfluxdbReporterElementParser
-    extends AbstractReporterElementParser
-{
-    @Override
-    public String getType()
-    {
-        return "influxdb";
-    }
+public interface MetricPrefixSupplier {
 
-    @Override
-    protected Class<?> getBeanClass()
-    {
-        return InfluxdbReporterFactoryBean.class;
-    }
+    String getPrefix();
+
 }

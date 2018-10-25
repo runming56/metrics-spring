@@ -23,9 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 
-import io.dropwizard.metrics.health.HealthCheckRegistry;
+import com.codahale.metrics.health.HealthCheckRegistry;
 
-import io.dropwizard.metrics.MetricRegistry;
+import com.codahale.metrics.MetricRegistry;
 
 /**
  * An implementation of {@link MetricsConfigurer} with empty methods allowing

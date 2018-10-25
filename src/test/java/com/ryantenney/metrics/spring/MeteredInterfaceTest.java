@@ -22,11 +22,11 @@ import org.junit.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.annotation.Counted;
-import io.dropwizard.metrics.annotation.ExceptionMetered;
-import io.dropwizard.metrics.annotation.Metered;
-import io.dropwizard.metrics.annotation.Timed;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.annotation.Counted;
+import com.codahale.metrics.annotation.ExceptionMetered;
+import com.codahale.metrics.annotation.Metered;
+import com.codahale.metrics.annotation.Timed;
 
 /**
  * Purpose of test:

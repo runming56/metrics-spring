@@ -22,10 +22,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.dropwizard.metrics.annotation.Metered;
+import com.codahale.metrics.annotation.Metered;
 
-import io.dropwizard.metrics.Meter;
-import io.dropwizard.metrics.MetricRegistry;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
 
 import com.google.caliper.Benchmark;
 import com.google.caliper.runner.CaliperMain;

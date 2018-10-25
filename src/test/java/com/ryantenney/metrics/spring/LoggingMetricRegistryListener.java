@@ -18,13 +18,13 @@ package com.ryantenney.metrics.spring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.dropwizard.metrics.Counter;
-import io.dropwizard.metrics.Gauge;
-import io.dropwizard.metrics.Histogram;
-import io.dropwizard.metrics.Meter;
-import io.dropwizard.metrics.MetricName;
-import io.dropwizard.metrics.MetricRegistryListener;
-import io.dropwizard.metrics.Timer;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.Gauge;
+import com.codahale.metrics.Histogram;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricName;
+import com.codahale.metrics.MetricRegistryListener;
+import com.codahale.metrics.Timer;
 
 /**
 * Created with IntelliJ IDEA.

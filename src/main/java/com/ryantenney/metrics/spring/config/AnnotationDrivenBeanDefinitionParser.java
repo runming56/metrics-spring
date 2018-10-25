@@ -28,9 +28,9 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
-import io.dropwizard.metrics.health.HealthCheckRegistry;
+import com.codahale.metrics.health.HealthCheckRegistry;
 
-import io.dropwizard.metrics.MetricRegistry;
+import com.codahale.metrics.MetricRegistry;
 
 import com.ryantenney.metrics.spring.MetricsBeanPostProcessorFactory;
 

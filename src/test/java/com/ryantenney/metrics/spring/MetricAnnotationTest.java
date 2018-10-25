@@ -26,13 +26,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import io.dropwizard.metrics.Counter;
-import io.dropwizard.metrics.Histogram;
-import io.dropwizard.metrics.Meter;
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.Timer;
-import io.dropwizard.metrics.UniformReservoir;
-import io.dropwizard.metrics.annotation.Metric;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.Histogram;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
+import com.codahale.metrics.UniformReservoir;
+import com.codahale.metrics.annotation.Metric;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:metric-annotation.xml")

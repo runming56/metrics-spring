@@ -17,9 +17,9 @@ package com.ryantenney.metrics.spring;
 
 import org.springframework.aop.framework.ProxyConfig;
 
-import io.dropwizard.metrics.health.HealthCheckRegistry;
+import com.codahale.metrics.health.HealthCheckRegistry;
 
-import io.dropwizard.metrics.MetricRegistry;
+import com.codahale.metrics.MetricRegistry;
 
 public class MetricsBeanPostProcessorFactory {
 

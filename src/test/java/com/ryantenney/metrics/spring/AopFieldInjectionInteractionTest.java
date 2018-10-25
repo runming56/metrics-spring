@@ -28,16 +28,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import io.dropwizard.metrics.Counter;
-import io.dropwizard.metrics.MetricName;
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.annotation.Metric;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.annotation.Metric;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:aop-field-injection-interaction.xml")
 public class AopFieldInjectionInteractionTest {
 
-	private static final MetricName TARGET_COUNTER = MetricName.build("targetCounter");
+	private static final String TARGET_COUNTER = MetricName.build("targetCounter");
 
 	@Autowired
 	private MetricRegistry metricRegistry;

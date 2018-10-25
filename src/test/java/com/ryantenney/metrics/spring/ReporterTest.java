@@ -25,17 +25,17 @@ import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import io.dropwizard.metrics.ganglia.GangliaReporter;
-import io.dropwizard.metrics.graphite.GraphiteReporter;
-import io.dropwizard.metrics.ConsoleReporter;
-import io.dropwizard.metrics.CsvReporter;
-import io.dropwizard.metrics.JmxReporter;
-import io.dropwizard.metrics.Metric;
-import io.dropwizard.metrics.MetricFilter;
-import io.dropwizard.metrics.MetricName;
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.SharedMetricRegistries;
-import io.dropwizard.metrics.Slf4jReporter;
+import com.codahale.metrics.ganglia.GangliaReporter;
+import com.codahale.metrics.graphite.GraphiteReporter;
+import com.codahale.metrics.ConsoleReporter;
+import com.codahale.metrics.CsvReporter;
+import com.codahale.metrics.JmxReporter;
+import com.codahale.metrics.Metric;
+import com.codahale.metrics.MetricFilter;
+import com.codahale.metrics.MetricName;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.SharedMetricRegistries;
+import com.codahale.metrics.Slf4jReporter;
 
 import com.ryantenney.metrics.spring.reporter.FakeReporter;
 

@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ryantenney.metrics.spring.config;
+package com.ryantenney.metrics.spring.reporter;
 
-import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
-import org.w3c.dom.Element;
+public class BasicMetricPrefixSupplier implements MetricPrefixSupplier {
 
-import com.codahale.metrics.health.HealthCheckRegistry;
+    private final String prefix;
 
-class HealthCheckRegistryBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
+    public BasicMetricPrefixSupplier(final String prefix) {
+        this.prefix = prefix;
+    }
 
-	@Override
-	protected Class<?> getBeanClass(Element element) {
-		return HealthCheckRegistry.class;
-	}
-
-	@Override
-	protected boolean shouldGenerateIdAsFallback() {
-		return true;
-	}
+    @Override
+    public String getPrefix() {
+        return prefix;
+    }
 
 }

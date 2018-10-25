@@ -24,12 +24,10 @@ import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.core.Ordered;
 import org.springframework.util.ReflectionUtils.MethodFilter;
 
-import io.dropwizard.metrics.annotation.Timed;
-
-import io.dropwizard.metrics.MetricName;
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.Timer;
-import io.dropwizard.metrics.Timer.Context;
+import com.codahale.metrics.annotation.Timed;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
+import com.codahale.metrics.Timer.Context;
 import static com.ryantenney.metrics.spring.AnnotationFilter.PROXYABLE_METHODS;
 
 class TimedMethodInterceptor extends AbstractMetricMethodInterceptor<Timed, Timer> implements Ordered {
@@ -54,12 +52,12 @@ class TimedMethodInterceptor extends AbstractMetricMethodInterceptor<Timed, Time
 	}
 
 	@Override
-	protected Timer buildMetric(MetricRegistry metricRegistry, MetricName metricName, Timed annotation) {
+	protected Timer buildMetric(MetricRegistry metricRegistry, String metricName, Timed annotation) {
 		return metricRegistry.timer(metricName);
 	}
 
 	@Override
-	protected MetricName buildMetricName(Class<?> targetClass, Method method, Timed annotation) {
+	protected String buildMetricName(Class<?> targetClass, Method method, Timed annotation) {
 		return Util.forTimedMethod(targetClass, method, annotation);
 	}
 

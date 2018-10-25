@@ -33,17 +33,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import io.dropwizard.metrics.CachedGauge;
-import io.dropwizard.metrics.Counter;
-import io.dropwizard.metrics.Gauge;
-import io.dropwizard.metrics.Meter;
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.RatioGauge;
-import io.dropwizard.metrics.Timer;
-import io.dropwizard.metrics.annotation.Counted;
-import io.dropwizard.metrics.annotation.ExceptionMetered;
-import io.dropwizard.metrics.annotation.Metered;
-import io.dropwizard.metrics.annotation.Timed;
+import com.codahale.metrics.CachedGauge;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.Gauge;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.RatioGauge;
+import com.codahale.metrics.Timer;
+import com.codahale.metrics.annotation.Counted;
+import com.codahale.metrics.annotation.ExceptionMetered;
+import com.codahale.metrics.annotation.Metered;
+import com.codahale.metrics.annotation.Timed;
 
 import java.util.concurrent.TimeUnit;
 
@@ -406,10 +406,10 @@ public class MeteredClassTest {
 
 	public static class MeteredClass {
 
-		@io.dropwizard.metrics.annotation.Gauge
+		@com.codahale.metrics.annotation.Gauge
 		private int gaugedField = 999;
 
-		@io.dropwizard.metrics.annotation.Gauge
+		@com.codahale.metrics.annotation.Gauge
 		private RatioGauge gaugedGaugeField = new RatioGauge() {
 			@Override
 			protected Ratio getRatio() {
@@ -417,7 +417,7 @@ public class MeteredClassTest {
 			}
 		};
 
-		@io.dropwizard.metrics.annotation.Gauge
+		@com.codahale.metrics.annotation.Gauge
 		public int gaugedMethod() {
 			return this.gaugedField;
 		}
@@ -426,7 +426,7 @@ public class MeteredClassTest {
 			this.gaugedField = value;
 		}
 
-		@io.dropwizard.metrics.annotation.CachedGauge(timeout = 1, timeoutUnit = TimeUnit.DAYS)
+		@com.codahale.metrics.annotation.CachedGauge(timeout = 1, timeoutUnit = TimeUnit.DAYS)
 		public int cachedGaugedMethod() {
 			return this.gaugedField;
 		}

@@ -27,15 +27,17 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.support.DefaultConversionService;
 
-import io.dropwizard.metrics.Metric;
-import io.dropwizard.metrics.MetricFilter;
-import io.dropwizard.metrics.MetricName;
-import io.dropwizard.metrics.MetricRegistry;
+import com.codahale.metrics.Metric;
+import com.codahale.metrics.MetricFilter;
+import com.codahale.metrics.MetricRegistry;
 
 public abstract class AbstractReporterFactoryBean<T> implements FactoryBean<T>, InitializingBean, BeanFactoryAware {
 
 	protected static final String FILTER_PATTERN = "filter";
 	protected static final String FILTER_REF = "filter-ref";
+
+	protected static final String PREFIX = "prefix";
+	protected static final String PREFIX_SUPPLIER_REF = "prefix-supplier-ref";
 
 	private MetricRegistry metricRegistry;
 	private BeanFactory beanFactory;
@@ -168,13 +170,23 @@ public abstract class AbstractReporterFactoryBean<T> implements FactoryBean<T>, 
 		return MetricFilter.ALL;
 	}
 
+	protected String getPrefix() {
+		if (hasProperty(PREFIX)) {
+			return getProperty(PREFIX);
+		}
+		else if (hasProperty(PREFIX_SUPPLIER_REF)) {
+			return getPropertyRef(PREFIX_SUPPLIER_REF, MetricPrefixSupplier.class).getPrefix();
+		}
+		return null;
+	}
+
 	protected MetricFilter metricFilterPattern(String pattern) {
 		final Pattern filter = Pattern.compile(pattern);
 		return new MetricFilter() {
 
 			@Override
-			public boolean matches(MetricName name, Metric metric) {
-				return filter.matcher(name.getKey()).matches();
+			public boolean matches(String name, Metric metric) {
+				return filter.matcher(name).matches();
 			}
 
 			@Override

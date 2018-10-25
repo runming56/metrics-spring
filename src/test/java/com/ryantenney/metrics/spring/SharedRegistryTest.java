@@ -19,8 +19,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.SharedMetricRegistries;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.SharedMetricRegistries;
 
 public class SharedRegistryTest {
 

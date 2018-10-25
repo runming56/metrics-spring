@@ -38,17 +38,17 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.dropwizard.metrics.CachedGauge;
-import io.dropwizard.metrics.Counter;
-import io.dropwizard.metrics.Gauge;
-import io.dropwizard.metrics.Meter;
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.Timer;
-import io.dropwizard.metrics.annotation.Counted;
-import io.dropwizard.metrics.annotation.ExceptionMetered;
-import io.dropwizard.metrics.annotation.Metered;
-import io.dropwizard.metrics.annotation.Timed;
-import io.dropwizard.metrics.health.HealthCheckRegistry;
+import com.codahale.metrics.CachedGauge;
+import com.codahale.metrics.Counter;
+import com.codahale.metrics.Gauge;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
+import com.codahale.metrics.annotation.Counted;
+import com.codahale.metrics.annotation.ExceptionMetered;
+import com.codahale.metrics.annotation.Metered;
+import com.codahale.metrics.annotation.Timed;
+import com.codahale.metrics.health.HealthCheckRegistry;
 
 /**
  * Tests use of {@link EnableMetrics @EnableMetrics} on {@code @Configuration} classes.
@@ -205,15 +205,15 @@ public class EnableMetricsTest {
 
 	public static class TestBean {
 
-		@io.dropwizard.metrics.annotation.Gauge
+		@com.codahale.metrics.annotation.Gauge
 		private int intGaugeField = 5;
 
-		@io.dropwizard.metrics.annotation.Gauge
+		@com.codahale.metrics.annotation.Gauge
 		public int intGaugeMethod() {
 			return 6;
 		}
 
-		@io.dropwizard.metrics.annotation.CachedGauge(timeout = 100)
+		@com.codahale.metrics.annotation.CachedGauge(timeout = 100)
 		public int cachedGaugeMethod() {
 			return 7;
 		}

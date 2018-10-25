@@ -19,8 +19,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import io.dropwizard.metrics.MetricName;
-import io.dropwizard.metrics.MetricRegistry;
+import com.codahale.metrics.MetricName;
+import com.codahale.metrics.MetricRegistry;
 
 public class RegisterElementTest {
 

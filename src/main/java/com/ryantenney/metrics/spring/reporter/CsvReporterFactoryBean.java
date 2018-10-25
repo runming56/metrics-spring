@@ -15,8 +15,8 @@
  */
 package com.ryantenney.metrics.spring.reporter;
 
-import io.dropwizard.metrics.Clock;
-import io.dropwizard.metrics.CsvReporter;
+import com.codahale.metrics.Clock;
+import com.codahale.metrics.CsvReporter;
 
 import java.io.File;
 import java.util.Locale;

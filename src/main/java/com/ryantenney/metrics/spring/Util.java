@@ -15,70 +15,73 @@
  */
 package com.ryantenney.metrics.spring;
 
-import static io.dropwizard.metrics.MetricRegistry.name;
-
-import io.dropwizard.metrics.MetricName;
-import io.dropwizard.metrics.annotation.CachedGauge;
-import io.dropwizard.metrics.annotation.Counted;
-import io.dropwizard.metrics.annotation.ExceptionMetered;
-import io.dropwizard.metrics.annotation.Gauge;
-import io.dropwizard.metrics.annotation.Metered;
-import io.dropwizard.metrics.annotation.Metric;
-import io.dropwizard.metrics.annotation.Timed;
+import static com.codahale.metrics.MetricRegistry.name;
 
 import java.lang.reflect.Member;
+
+import com.codahale.metrics.annotation.CachedGauge;
+import com.codahale.metrics.annotation.Counted;
+import com.codahale.metrics.annotation.ExceptionMetered;
+import com.codahale.metrics.annotation.Gauge;
+import com.codahale.metrics.annotation.Metered;
+import com.codahale.metrics.annotation.Metric;
+import com.codahale.metrics.annotation.Timed;
 
 class Util {
 
 	private Util() {}
 
-	static MetricName forTimedMethod(Class<?> klass, Member member, Timed annotation) {
-		return chooseName(annotation.name(), annotation.tags(), annotation.absolute(), klass, member);
+	static String forTimedMethod(Class<?> klass, Member member, Timed annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
-	static MetricName forMeteredMethod(Class<?> klass, Member member, Metered annotation) {
-		return chooseName(annotation.name(), annotation.tags(), annotation.absolute(), klass, member);
+	static String forMeteredMethod(Class<?> klass, Member member, Metered annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
-	static MetricName forGauge(Class<?> klass, Member member, Gauge annotation) {
-		return chooseName(annotation.name(), annotation.tags(), annotation.absolute(), klass, member);
+	static String forGauge(Class<?> klass, Member member, Gauge annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
-	static MetricName forCachedGauge(Class<?> klass, Member member, CachedGauge annotation) {
-		return chooseName(annotation.name(), annotation.tags(), annotation.absolute(), klass, member);
+	static String forCachedGauge(Class<?> klass, Member member, CachedGauge annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
-	static MetricName forExceptionMeteredMethod(Class<?> klass, Member member, ExceptionMetered annotation) {
-		return chooseName(annotation.name(), annotation.tags(), annotation.absolute(), klass, member, ExceptionMetered.DEFAULT_NAME_SUFFIX);
+	static String forExceptionMeteredMethod(Class<?> klass, Member member, ExceptionMetered annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member, ExceptionMetered.DEFAULT_NAME_SUFFIX);
 	}
 
-	static MetricName forCountedMethod(Class<?> klass, Member member, Counted annotation) {
-		return chooseName(annotation.name(), annotation.tags(), annotation.absolute(), klass, member);
+	static String forCountedMethod(Class<?> klass, Member member, Counted annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
-	static MetricName forMetricField(Class<?> klass, Member member, Metric annotation) {
-		return chooseName(annotation.name(), annotation.tags(), annotation.absolute(), klass, member);
+	static String forMetricField(Class<?> klass, Member member, Metric annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
-	static MetricName chooseName(String explicitName, String[] tags, boolean absolute, Class<?> klass, Member member, String... suffixes) {
-		MetricName metricName;
+	@Deprecated
+	static String forCachedGauge(Class<?> klass, Member member, com.ryantenney.metrics.annotation.CachedGauge annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
+	}
+
+	@Deprecated
+	static String forCountedMethod(Class<?> klass, Member member, com.ryantenney.metrics.annotation.Counted annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
+	}
+
+	@Deprecated
+	static String forMetricField(Class<?> klass, Member member, com.ryantenney.metrics.annotation.Metric annotation) {
+		return chooseName(annotation.name(), annotation.absolute(), klass, member);
+	}
+
+	static String chooseName(String explicitName, boolean absolute, Class<?> klass, Member member, String... suffixes) {
 		if (explicitName != null && !explicitName.isEmpty()) {
 			if (absolute) {
-				metricName = MetricName.build(explicitName);
+				return explicitName;
 			}
-			else {
-				metricName = name(klass.getCanonicalName(), explicitName);
-			}
+			return name(klass.getCanonicalName(), explicitName);
 		}
-		else {
-			metricName = MetricName.join(name(klass.getCanonicalName(), member.getName()), MetricName.build(suffixes));
-		}
-
-		if (tags != null && tags.length > 0) {
-			metricName = metricName.tagged(tags);
-		}
-
-		return metricName;
+		return name(name(klass.getCanonicalName(), member.getName()), suffixes);
 	}
 
 }

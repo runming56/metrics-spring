@@ -18,11 +18,11 @@ package com.ryantenney.metrics.spring.servlets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import io.dropwizard.metrics.servlets.HealthCheckServlet;
+import com.codahale.metrics.servlets.HealthCheckServlet;
 
-import io.dropwizard.metrics.MetricRegistry;
-import io.dropwizard.metrics.health.HealthCheckRegistry;
-import io.dropwizard.metrics.servlets.MetricsServlet;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.health.HealthCheckRegistry;
+import com.codahale.metrics.servlets.MetricsServlet;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

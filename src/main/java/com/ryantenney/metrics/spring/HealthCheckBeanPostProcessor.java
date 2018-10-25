@@ -20,8 +20,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.Ordered;
 
-import io.dropwizard.metrics.health.HealthCheck;
-import io.dropwizard.metrics.health.HealthCheckRegistry;
+import com.codahale.metrics.health.HealthCheck;
+import com.codahale.metrics.health.HealthCheckRegistry;
 
 class HealthCheckBeanPostProcessor implements BeanPostProcessor, Ordered {
 
